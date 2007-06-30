@@ -33,6 +33,7 @@ BuildRequires:	libgnomeui2-devel
 BuildRequires:	libglade2.0-devel
 BuildRequires:	gtkspell-devel >= 2.0.4
 BuildRequires:	perl-XML-Parser
+BuildRequires:	automake
 BuildRequires:	intltool
 BuildRequires:  desktop-file-utils
 %if %enable_applet
