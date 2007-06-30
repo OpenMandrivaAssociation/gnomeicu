@@ -22,7 +22,7 @@ Source11:	%{name}-mugz.tar.bz2
 Source12:	%{name}-penguin.tar.bz2
 
 # (fc) 0.98.126-2mdk use DTD compliant OMF file
-Patch0:		gnomeicu-0.98.126-omffix.patch.bz2
+Patch0:		gnomeicu-0.98.126-omffix.patch
 
 Requires(pre):		scrollkeeper >= 0.3.5
 Requires(pre):		GConf2 >= 2.3.3
@@ -96,20 +96,6 @@ aclocal
 rm -rf $RPM_BUILD_ROOT
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
-# mdk menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}): \
-command="%{_bindir}/gnomeicu" \
-icon="%{name}.png" \
-longtitle="GNOME ICQ communications program" \
-needs="x11" \
-section="Internet/Instant Messaging" \
-startup_notify="true" \
-title="GnomeICU" \
-xdg="true"
-EOF
-
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="X-MandrivaLinux-Internet-InstantMessaging" \
@@ -164,7 +150,6 @@ if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q
 %{_datadir}/omf/*
 %{_datadir}/pixmaps/*
 %{_datadir}/sounds/*
-%{_menudir}/*
 %{_iconsdir}/%name.png
 %{_liconsdir}/%name.png
 %{_miconsdir}/%name.png
