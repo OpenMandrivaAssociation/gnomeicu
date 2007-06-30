@@ -1,4 +1,4 @@
-%define version 0.99.10
+%define version 0.99.12
 
 %define enable_applet 1
 %{?_with_applet: %define enable_applet 1}
@@ -8,7 +8,7 @@
 
 Name:		gnomeicu
 Version:	%{version}
-Release:	%mkrel 3
+Release:	%mkrel 1
 License:	GPL
 Summary:	Gnome ICQ communications program 
 Group:		Networking/Instant messaging
