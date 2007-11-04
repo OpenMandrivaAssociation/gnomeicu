@@ -23,7 +23,7 @@ Source12:	%{name}-penguin.tar.bz2
 
 # (fc) 0.98.126-2mdk use DTD compliant OMF file
 Patch0:		gnomeicu-0.98.126-omffix.patch
-
+Patch1:		gnomeicu-0.99.14-fix-desktop-file.patch
 Requires(pre):		scrollkeeper >= 0.3.5
 Requires(pre):		GConf2 >= 2.3.3
 BuildRequires:	ImageMagick
@@ -35,7 +35,6 @@ BuildRequires:	gtkspell-devel >= 2.0.4
 BuildRequires:	perl-XML-Parser
 BuildRequires:	automake
 BuildRequires:	intltool
-BuildRequires:  desktop-file-utils
 %if %enable_applet
 BuildRequires: gnome-panel-devel
 %endif
@@ -77,10 +76,8 @@ This package allows GnomeICU to be embedded in GNOME panel.
 
 %prep
 %setup -q
-libtoolize --copy --force
-autoreconf --force
-aclocal
 %patch0 -p1 -b .omffix
+%patch1 -p0
 
 %build
 %configure2_5x \
@@ -96,12 +93,6 @@ aclocal
 %install
 rm -rf $RPM_BUILD_ROOT
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
-
-desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --add-category="X-MandrivaLinux-Internet-InstantMessaging" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-
 
 # convert source icon into mdk menu icons
 mkdir -p $RPM_BUILD_ROOT%{_iconsdir} \
