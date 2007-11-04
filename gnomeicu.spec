@@ -1,4 +1,4 @@
-%define version 0.99.12
+%define version 0.99.14
 
 %define enable_applet 1
 %{?_with_applet: %define enable_applet 1}
