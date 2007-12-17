@@ -13,7 +13,6 @@ License:	GPL
 Summary:	Gnome ICQ communications program 
 Group:		Networking/Instant messaging
 URL:		http://gnomeicu.sourceforge.net
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 Source:		http://download.sourceforge.net/%{name}/%{version}/src/%{name}-%{version}.tar.bz2
 # Icon themes from http://gnomeicu.sf.net/themes/
