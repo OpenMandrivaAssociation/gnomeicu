@@ -119,12 +119,10 @@ rm -rf $RPM_BUILD_ROOT
 %post
 %update_menus
 if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
-GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gnomeicu.schemas > /dev/null
+%post_install_gconf_schemas gnomeicu
 
 %preun
-if [ $1 -eq 0 ]; then
- GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/gnomeicu.schemas > /dev/null
-fi
+%preun_uninstall_gconf_schemas gnomeicu
 
 %postun
 %clean_menus
