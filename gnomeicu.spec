@@ -118,7 +118,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %update_menus
-if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
+%update_scrollkeeper
 %post_install_gconf_schemas gnomeicu
 
 %preun
@@ -126,7 +126,7 @@ if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q
 
 %postun
 %clean_menus
-if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
+%clean_scrollkeeper
 
 %files -f %name.lang
 %defattr(-,root,root,755)
