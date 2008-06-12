@@ -116,17 +116,21 @@ find $RPM_BUILD_ROOT%{_datadir}/gnomeicu/icons/ -type f -print0 | xargs -0 chmod
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %mdkversion < 200900
 %post
 %update_menus
 %update_scrollkeeper
 %post_install_gconf_schemas gnomeicu
+%endif
 
 %preun
 %preun_uninstall_gconf_schemas gnomeicu
 
+%if %mdkversion < 200900
 %postun
 %clean_menus
 %clean_scrollkeeper
+%endif
 
 %files -f %name.lang
 %defattr(-,root,root,755)
