@@ -26,7 +26,7 @@ Patch0:		gnomeicu-0.98.126-omffix.patch
 Patch1:		gnomeicu-0.99.14-fix-desktop-file.patch
 Requires(pre):		scrollkeeper >= 0.3.5
 Requires(pre):		GConf2 >= 2.3.3
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	gdbm-devel
 BuildRequires:	scrollkeeper >= 0.3.5
 BuildRequires:	libgnomeui2-devel
