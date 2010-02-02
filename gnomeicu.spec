@@ -24,6 +24,7 @@ Source12:	%{name}-penguin.tar.bz2
 # (fc) 0.98.126-2mdk use DTD compliant OMF file
 Patch0:		gnomeicu-0.98.126-omffix.patch
 Patch1:		gnomeicu-0.99.14-fix-desktop-file.patch
+Patch2:		gnomeicu-0.99.14-fix-str-fmt.patch
 Requires(pre):		scrollkeeper >= 0.3.5
 Requires(pre):		GConf2 >= 2.3.3
 BuildRequires:	imagemagick
@@ -78,9 +79,10 @@ This package allows GnomeICU to be embedded in GNOME panel.
 %setup -q
 %patch0 -p1 -b .omffix
 %patch1 -p0
+%patch2 -p0
 
 %build
-%configure2_5x \
+%configure2_5x --disable-schemas-install \
 %if %enable_applet
 	--enable-applet \
 %endif
@@ -92,7 +94,7 @@ This package allows GnomeICU to be embedded in GNOME panel.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
+%makeinstall_std
 
 # convert source icon into mdk menu icons
 mkdir -p $RPM_BUILD_ROOT%{_iconsdir} \
