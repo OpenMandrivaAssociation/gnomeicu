@@ -8,7 +8,7 @@
 
 Name:		gnomeicu
 Version:	%{version}
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPL
 Summary:	Gnome ICQ communications program 
 Group:		Networking/Instant messaging
