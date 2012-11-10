@@ -1,0 +1,111 @@
+--- src/cl_migrate.c.str	2010-02-02 15:46:56.000000000 +0100
++++ src/cl_migrate.c	2010-02-02 15:47:17.000000000 +0100
+@@ -51,6 +51,7 @@
+     dialog = gtk_message_dialog_new (GTK_WINDOW (MainData->window),
+                                      GTK_DIALOG_DESTROY_WITH_PARENT,
+                                      GTK_MESSAGE_WARNING, GTK_BUTTONS_OK,
++				     "%s",
+                                      d ? _(msg_rare) : _(msg_default));
+     gtk_dialog_run (GTK_DIALOG (dialog));
+     gtk_widget_destroy (dialog);
+--- src/gnomeicu.c.str	2010-02-02 15:47:28.000000000 +0100
++++ src/gnomeicu.c	2010-02-02 15:47:50.000000000 +0100
+@@ -178,7 +178,7 @@
+ 	}
+ 
+ 	if( have_tcp_port == FALSE )
+-		g_error( g_strdup_printf( "No TCP port available between %d and %d.\n",
++		g_error( "%s", g_strdup_printf( "No TCP port available between %d and %d.\n",
+ 		                          min_tcp_port, max_tcp_port ) );
+ }
+ 
+@@ -898,7 +898,7 @@
+ 
+ 	if (error != NULL)
+ 	{
+-		g_warning (error->message);
++		g_warning ("%s", error->message);
+ 
+ 		g_error_free (error);
+ 	}
+--- src/gtkfunc.c.str	2010-02-02 15:48:04.000000000 +0100
++++ src/gtkfunc.c	2010-02-02 15:48:47.000000000 +0100
+@@ -98,6 +98,7 @@
+ 
+ 	dialog = gtk_message_dialog_new (NULL, 0,
+ 	                                 GTK_MESSAGE_INFO, GTK_BUTTONS_NONE,
++					 "%s",
+ 	                                 sender);
+ 
+ 	if (!kontakt->inlist)
+@@ -196,7 +197,7 @@
+ 	}
+ 
+ 	if (message_text->message) {
+-	  g_print(message_text->message);
++	  g_print("%s",message_text->message);
+ 	  gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
+ 						   "%s", 
+ 						   message_text->message);
+@@ -1344,6 +1345,7 @@
+ 						 GTK_DIALOG_DESTROY_WITH_PARENT,
+ 						 GTK_MESSAGE_ERROR,
+ 						 GTK_BUTTONS_OK,
++						 "%s",
+ 						 message);
+ 		g_signal_connect (G_OBJECT (dialog), "response",
+ 				  G_CALLBACK (gtk_widget_destroy), NULL);
+--- src/personal_info.c.str	2010-02-02 15:49:07.000000000 +0100
++++ src/personal_info.c	2010-02-02 15:49:24.000000000 +0100
+@@ -195,7 +195,7 @@
+ 	kontakt->info->version = g_strdup_printf("%d", kontakt->version);
+ 
+ 	g_free( kontakt->info->status );
+-	kontakt->info->status = g_strdup_printf(get_status_str( kontakt->status ));
++	kontakt->info->status = g_strdup_printf("%s", get_status_str( kontakt->status ));
+ 
+ 	gtk_label_set_text (GTK_LABEL (glade_xml_get_widget (kontakt->info_dlg_xml, "uin_entry")), kontakt->uin);
+ 
+--- src/prefs.c.str	2010-02-02 15:49:37.000000000 +0100
++++ src/prefs.c	2010-02-02 15:49:47.000000000 +0100
+@@ -173,7 +173,7 @@
+ 
+   dialog = gtk_message_dialog_new (GTK_WINDOW (MainData->window),
+                                    GTK_DIALOG_DESTROY_WITH_PARENT,
+-                                   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, str);
++                                   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", str);
+   gtk_dialog_run (GTK_DIALOG (dialog));
+   gtk_widget_destroy (dialog);
+ 
+--- src/util.c.str	2010-02-02 15:50:07.000000000 +0100
++++ src/util.c	2010-02-02 15:50:20.000000000 +0100
+@@ -1126,7 +1126,7 @@
+ 
+     dialog = gtk_message_dialog_new (GTK_WINDOW (MainData->window),
+                                      GTK_DIALOG_DESTROY_WITH_PARENT,
+-                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, err_str);
++                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", err_str);
+     gtk_dialog_run (GTK_DIALOG (dialog));
+ 
+     gtk_widget_destroy (dialog);
+--- src/v7login.c.str	2010-02-02 15:50:34.000000000 +0100
++++ src/v7login.c	2010-02-02 15:50:46.000000000 +0100
+@@ -338,7 +338,7 @@
+ 					   GTK_DIALOG_MODAL | 
+ 					   GTK_DIALOG_DESTROY_WITH_PARENT,
+ 					   GTK_MESSAGE_ERROR,
+-					   GTK_BUTTONS_OK, errormsg);
++					   GTK_BUTTONS_OK, "%s", errormsg);
+ 	  gtk_dialog_run(GTK_DIALOG(dialog));
+ 	  gtk_widget_destroy (dialog);
+           g_free(errormsg);
+--- src/v7recv.c.str	2010-02-02 15:50:56.000000000 +0100
++++ src/v7recv.c	2010-02-02 15:51:08.000000000 +0100
+@@ -406,6 +406,7 @@
+ 				   GTK_DIALOG_DESTROY_WITH_PARENT,
+ 				   GTK_MESSAGE_WARNING,
+ 				   GTK_BUTTONS_OK,
++				   "%s",
+        v7_get_error_message(v7_buffer_get_w_be (snac->buf, out)));
+ 
+   gtk_dialog_run(GTK_DIALOG(dialog));
