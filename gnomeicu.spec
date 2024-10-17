@@ -12,7 +12,7 @@ Release:	%mkrel 1
 License:	GPL
 Summary:	Gnome ICQ communications program 
 Group:		Networking/Instant messaging
-URL:		http://gnomeicu.sourceforge.net
+URL:		https://gnomeicu.sourceforge.net
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 Source:		http://prdownloads.sourceforge.net/gnomeicu/%{name}-%{version}.tar.bz2
