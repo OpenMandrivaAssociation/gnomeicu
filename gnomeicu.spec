@@ -26,6 +26,9 @@ Patch0:		gnomeicu-0.98.126-omffix.patch
 Patch2:		gnomeicu-0.99.14-fix-str-fmt.patch
 Requires(pre):		scrollkeeper >= 0.3.5
 Requires(pre):		GConf2 >= 2.3.3
+BuildRequires:	autoconf
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:	imagemagick
 BuildRequires:	gdbm-devel
 BuildRequires:	scrollkeeper >= 0.3.5
